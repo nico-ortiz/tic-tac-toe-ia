@@ -1,18 +1,16 @@
 package com.project.aditionalFunc;
 
-import com.project.search.TicTacToeState;
+public class TupleInt {
 
-public class Tuple<S extends TicTacToeState> {
-    
-    private S fst;
+    private int fst;
     private int snd;
 
-    public Tuple(S fst, int snd) {
+    public TupleInt(int fst, int snd) {
         this.fst = fst;
         this.snd = snd;
     }
 
-    public S getFst() {
+    public int getFst() {
         return fst;
     }
 
@@ -20,7 +18,7 @@ public class Tuple<S extends TicTacToeState> {
         return snd;
     }
 
-    public void setFst(S fst) {
+    public void setFst(int fst) {
         this.fst = fst;
     }
 

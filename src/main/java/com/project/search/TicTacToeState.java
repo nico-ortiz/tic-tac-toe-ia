@@ -2,7 +2,7 @@ package com.project.search;
 
 import java.util.ArrayList;
 
-import com.project.aditionalFunc.Tuple;
+import com.project.aditionalFunc.TupleInt;
 
 /**
  * Class which defines the basic requirements on tic tac toe state. 
@@ -116,7 +116,8 @@ public class TicTacToeState {
      * @return true iff this is a winner board, could be to os or xs
      */
     public boolean isSuccess() {
-        return isAWinnerBoard(board) == 1 || isAWinnerBoard(board) == -1;
+        int winner = isAWinnerBoard(board);
+        return winner == 1 || winner == -1;
     }
 
     /**
@@ -135,11 +136,7 @@ public class TicTacToeState {
      */
     public int value() {
         if (end()) {
-            if (isSuccess()) {
-                return isAWinnerBoard(board);
-            } else {    
-                return 0;
-            }
+            return isAWinnerBoard(board);
         } else {
             return approximateValue();
         }
@@ -150,7 +147,7 @@ public class TicTacToeState {
      * @return true if is a board with tie otherwise false  
      */
     public boolean isTie() {
-        return !areThereFreeMovements(board);
+        return !areThereFreeMovements(board) && !isSuccess();
     }
 
     /**
@@ -319,12 +316,12 @@ public class TicTacToeState {
         return board[a][b] == '_';
     }
 
-    public ArrayList<Tuple> freePositions() { 
-        ArrayList<Tuple> list = new ArrayList<>();
+    public ArrayList<TupleInt> freePositions() { 
+        ArrayList<TupleInt> list = new ArrayList<>();
         for (int row = 0; row < board.length; row++) { 
             for (int column = 0; column < board.length; column++) {
                 if (isAValidMovement(board, row, column)) {
-                    list.add(new Tuple(row, column));
+                    list.add(new TupleInt(row, column));
                 }
             }
         }

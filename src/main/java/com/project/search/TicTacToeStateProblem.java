@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.project.aditionalFunc.Tuple;
+import com.project.aditionalFunc.TupleInt;
 
 /**
  * Class which defines the basic elements necessary for characterize 
@@ -43,8 +43,8 @@ public class TicTacToeStateProblem {
         }
 
         List<TicTacToeState> result = new LinkedList<>();
-        ArrayList<Tuple> list = s.freePositions();
-        Tuple elem;
+        ArrayList<TupleInt> list = s.freePositions();
+        TupleInt elem;
 
         if (s.isMax()) {
             for (int i = 0; i < list.size(); i++) {

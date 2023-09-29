@@ -2,14 +2,17 @@ package com.project.game;
 
 import java.util.List;
 
+import com.project.engine.AlphaBetaPruning;
 import com.project.search.TicTacToeState;
 import com.project.search.TicTacToeStateProblem;
 
 public class SmartPlayer extends Player {
 
-    public SmartPlayer(char letter) {
-        super(letter);
+    private AlphaBetaPruning alphaBetaPruning;
 
+    public SmartPlayer(char letter, TicTacToeStateProblem sp) {
+        super(letter);
+        alphaBetaPruning = new AlphaBetaPruning(sp, 5);
     }
 
     public TicTacToeState getFirstGameMove(TicTacToeStateProblem stateProblem) {
@@ -21,8 +24,7 @@ public class SmartPlayer extends Player {
 
     @Override
     public TicTacToeState getGameMove(TicTacToeState state) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameMove'");
+        return alphaBetaPruning.computeSuccessor(state);
     }
 
 }

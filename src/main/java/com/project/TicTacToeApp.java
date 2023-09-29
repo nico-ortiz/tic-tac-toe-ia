@@ -1,6 +1,9 @@
 package com.project;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 import com.project.game.HumanPlayer;
 import com.project.game.SmartPlayer;
@@ -11,7 +14,7 @@ import com.project.search.TicTacToeStateProblem;
  * Main for TicTacToe App.
  */
 public class TicTacToeApp {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws IOException {
                
         TicTacToeStateProblem sp = new TicTacToeStateProblem();
         TicTacToeState playerState = new TicTacToeState();
@@ -85,14 +88,14 @@ public class TicTacToeApp {
     /*
      * Method to choose team
      */
-    private static char choiceTeam() {
-        Scanner scanner = new Scanner(System.in);
+    private static char choiceTeam() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         char t = ' ';
         boolean invalid = true;
 
         while (invalid) {
             System.out.println("Elige equipo (X - O):");
-            t = scanner.nextLine().toUpperCase().charAt(0);
+            t = reader.readLine().toUpperCase().charAt(0);
 
             if (validT(t)) {
                 break;

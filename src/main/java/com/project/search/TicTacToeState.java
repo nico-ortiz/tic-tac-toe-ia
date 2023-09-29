@@ -102,13 +102,15 @@ public class TicTacToeState {
      * Print state of board
      */
     public void printState() {
+        System.out.println("    0 1 2 ");
         for (int row = 0; row < board.length; row++) {
-            System.out.print("[ ");
+            System.out.print(row+" [ ");
             for (int column = 0; column < board.length; column++) {
                 System.out.print(board[row][column]+" ");
             }
             System.out.println("]");
         }
+        System.out.println();
     }
     
     /**
@@ -125,7 +127,7 @@ public class TicTacToeState {
      * @return true iff this is an end state, a state with no successors(a leaf).
      */
     public boolean end() {
-        return isSuccess() || isTie();
+        return isSuccess() || !areThereFreeMovements(board);
     }
 
     /**
@@ -136,7 +138,11 @@ public class TicTacToeState {
      */
     public int value() {
         if (end()) {
-            return isAWinnerBoard(board);
+            if (isSuccess()) {
+                return isAWinnerBoard(board);
+            } else {    
+                return 0;
+            }
         } else {
             return approximateValue();
         }

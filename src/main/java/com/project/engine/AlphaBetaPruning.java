@@ -35,7 +35,6 @@ public class AlphaBetaPruning {
         this.p = p;
     }
 
-    //Hacer el AlphaBetaPruning fuera de este metodo
     public int computeValue(TicTacToeState state) {
         if (state == null) 
             throw new IllegalArgumentException("invalid state");
@@ -49,7 +48,8 @@ public class AlphaBetaPruning {
     }
 
     /**
-     * 
+     * AlphaBeta pruning algorithm.
+     * This algorithm returns the best movement for state.
      * @param state
      * @return Return a tuple, first component is the most prommising succesor for state.
      * The second component is the value of the most prommisin succesor.

@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import com.project.search.TicTacToeState;
 
+/*
+ * This class represents a human player. 
+ */
 public class HumanPlayer extends Player{
     
     public HumanPlayer(char letter) {

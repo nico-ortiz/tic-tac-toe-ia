@@ -2,6 +2,9 @@ package com.project.game;
 
 import com.project.search.TicTacToeState;
 
+/*
+ * This abstract class represents a player.
+ */
 public abstract class Player {
     
     private char letter;

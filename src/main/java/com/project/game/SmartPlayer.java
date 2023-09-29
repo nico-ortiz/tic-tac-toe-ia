@@ -6,6 +6,10 @@ import com.project.engine.AlphaBetaPruning;
 import com.project.search.TicTacToeState;
 import com.project.search.TicTacToeStateProblem;
 
+/*
+ * This class represents a computer player. 
+ * Game moves are made through AlphaBeta pruning algorithm. 
+ */
 public class SmartPlayer extends Player {
 
     private AlphaBetaPruning alphaBetaPruning;

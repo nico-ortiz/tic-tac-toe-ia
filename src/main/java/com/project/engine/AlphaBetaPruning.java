@@ -6,12 +6,12 @@ import com.project.aditionalFunc.Tuple;
 import com.project.search.TicTacToeState;
 import com.project.search.TicTacToeStateProblem;
 
-public class Minimax {
+public class AlphaBetaPruning {
     
     private TicTacToeStateProblem p;
     private int maxDepth;
 
-    public Minimax(TicTacToeStateProblem p, int maxDepth) {
+    public AlphaBetaPruning(TicTacToeStateProblem p, int maxDepth) {
         this.p = p;
         if (maxDepth == 0) throw new IllegalArgumentException("maximum depth must be more biggest than 1");
         this.maxDepth = maxDepth;
@@ -35,17 +35,17 @@ public class Minimax {
         this.p = p;
     }
 
-    //Hacer el minimax fuera de este metodo
+    //Hacer el AlphaBetaPruning fuera de este metodo
     public int computeValue(TicTacToeState state) {
         if (state == null) 
             throw new IllegalArgumentException("invalid state");
-        return miniMax(state, this.maxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE).getSnd();
+        return alphaBetaPruning(state, this.maxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE).getSnd();
     }
 
     public TicTacToeState computeSuccessor(TicTacToeState state) {
         if (state == null)
             throw new IllegalArgumentException("invalid state");
-        return miniMax(state, this.maxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE).getFst();
+        return alphaBetaPruning(state, this.maxDepth, Integer.MIN_VALUE, Integer.MAX_VALUE).getFst();
     }
 
     /**
@@ -54,7 +54,7 @@ public class Minimax {
      * @return Return a tuple, first component is the most prommising succesor for state.
      * The second component is the value of the most prommisin succesor.
      */
-    private Tuple<TicTacToeState> miniMax(TicTacToeState state, int maxDepth, int alpha, int beta) {
+    private Tuple<TicTacToeState> alphaBetaPruning(TicTacToeState state, int maxDepth, int alpha, int beta) {
         if (state.end() || maxDepth == 0) {
             return new Tuple<TicTacToeState>(state, state.value());
         } else {
@@ -67,13 +67,13 @@ public class Minimax {
                 List<TicTacToeState> succs = p.getSuccessors(state);
                 for (TicTacToeState succ: succs) {
                     if (state.isMax()) {
-                        alpha = Math.max(alpha, miniMax(succ, maxDepth, alpha, beta).getSnd());
+                        alpha = Math.max(alpha, alphaBetaPruning(succ, maxDepth, alpha, beta).getSnd());
                         if (maxTemp < alpha) {
                             maxState = succ;
                             maxTemp  = alpha;
                         }
                     } else {
-                        beta = Math.min(beta, miniMax(succ, maxDepth, alpha, beta).getSnd());
+                        beta = Math.min(beta, alphaBetaPruning(succ, maxDepth, alpha, beta).getSnd());
                         if (minTemp > beta) {
                             minState = succ;
                             minTemp  = beta;
